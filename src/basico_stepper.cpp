@@ -13,6 +13,11 @@ enable: Habiltación de la corriente del motor.
 #define dir 6
 #define enable 7
 int retardo;
+int vmin = 600;
+int vmax = 150;
+int vueltas1 =3;
+int vueltas2 =20;
+
 
 void setup() {
   pinMode(pulse, OUTPUT);
@@ -23,8 +28,8 @@ void setup() {
 }
 
 void loop() {
-  retardo = 600;
-  for (register int i=0; i<800; i++){
+  retardo = vmin;
+  for (register int i=0; i<vueltas1*400; i++){
   digitalWrite(pulse, LOW);
   delayMicroseconds(retardo);
   digitalWrite(pulse, HIGH);
@@ -35,8 +40,8 @@ delay(300);
   digitalWrite(dir, HIGH);
 delay(300);
 
-for (register int i=0; i<4000; i++){
-  if (retardo >= 300) retardo -= 5;
+for (register int i=0; i<=vueltas2*400; i++){
+  if (retardo >= vmax) retardo -= 2;
   digitalWrite(pulse, LOW);
   delayMicroseconds(retardo);
   digitalWrite(pulse, HIGH);
